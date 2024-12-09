@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Communities</title>
-</head>
-<body>
-    <h1>Communities</h1>
-    <ul>
-        {% for community in communities %}
-            <li>({ community.name })</li>
-        {% empty %}
-            <li>No community available.</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends 'layout.html' %} {% block title %} Communities {% endblock %}
+{% block content %}
+<section>
+    <h1>Группы</h1>
+
+    {% for community in communities %}
+    <article class="community">
+        <h2>
+            <a href="{% url 'communities:page' slug=community.slug %}"> {{ community.title }} </a>
+        </h2>
+        <p>{{ community.date }}</p>
+        <p>{{ community.body }}</p>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}
